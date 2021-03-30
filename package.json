@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "bin": {
-    "ops": "./cmd.js"
+    "ops": "cmd.js"
   },
   "scripts": {
     "test": "tap -T --100 test/*.test.js",
@@ -36,5 +36,18 @@
     "pre-commit": "^1.2.2",
     "standard": "^16.0.3",
     "tapx": "~0.2.3"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cto-ai/ops.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/cto-ai/ops/issues"
+  },
+  "homepage": "https://github.com/cto-ai/ops#readme"
 }
