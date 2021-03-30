@@ -24,7 +24,7 @@ export default async function cli () {
         error: await readFile(join(import.meta.url, 'pages', 'error.html'))
       }
     }
-    await clif({ structure, patterns, settings, fallthrough: fallthrough(settings) })
+    return await clif({ structure, patterns, settings, fallthrough: fallthrough(settings) })
   } catch (err) {
     console.error(err)
     process.exit(1)

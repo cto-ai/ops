@@ -8,7 +8,7 @@
     "ops": "./cmd.js"
   },
   "scripts": {
-    "test": "tap --100 test/*.test.js",
+    "test": "tap -T --100 test/*.test.js",
     "cov": "cov",
     "lint": "standard",
     "check": "npm test && npm run lint"
@@ -20,11 +20,11 @@
   "author": "David Mark Clements <dave@cto.ai>",
   "license": "MIT",
   "dependencies": {
+    "@cto.ai/ops-cmd": "~0.0.1",
     "@cto.ai/ops-ctrl-account": "^1.0.1",
     "@cto.ai/ops-local-config": "^1.1.0",
-    "@cto.ai/tux": "0.0.0",
+    "@cto.ai/tux": "~0.0.1",
     "analytics-node": "^4.0.1",
-    "clif": "^1.0.0-rc.0",
     "debug": "^4.3.1",
     "desm": "^1.1.0",
     "enquirer": "^2.3.6",
@@ -32,8 +32,9 @@
     "ora": "^5.3.0"
   },
   "devDependencies": {
+    "clif-dev": "^1.0.1",
     "pre-commit": "^1.2.2",
     "standard": "^16.0.3",
-    "tapx": "0.2.0"
+    "tapx": "~0.2.3"
   }
 }

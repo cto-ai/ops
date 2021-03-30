@@ -40,7 +40,7 @@ const helpify = {
   unrecognized (argv, { bin, breadcrumb, command }) {
     if (argv.length === 0) return ''
     const cmd = helpify.command(command.name)
-    return `\n{tuxError Command not recognized:} {tuxTerm ${bin}${helpify.breadcrumb(breadcrumb)}${cmd}${argv.join(' ')}}\n`
+    return `\n{tuxError Command not recognized:} {tuxTerm ${bin}${helpify.breadcrumb(breadcrumb)}${cmd}${argv.join(' ')}}\n\n`
   }
 }
 

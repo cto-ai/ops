@@ -44,7 +44,9 @@ export async function auth (info, settings) {
     await clear()
     throw new Fail({ type: 'print' }, MSG_SESSION_EXPIRED)
   }
+
   const account = createAccount(settings.auth)
+
   try {
     return await update({ tokens: await account.refresh(tokens) })
   } catch (err) {
