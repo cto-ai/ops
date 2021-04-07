@@ -2,10 +2,11 @@ import fs from 'fs'
 import path from 'path'
 import { join } from 'desm'
 import { commands as structure } from '@cto.ai/ops-cmd'
+import fallthrough from '@cto.ai/ops-fallthrough'
 import clif from 'clif'
 import { configDir } from './lib/config.js'
 import { loadSettings } from './lib/settings.js'
-import fallthrough from './fallthrough.js'
+
 const { mkdir, readFile, writeFile, symlink } = fs.promises
 
 const patterns = join(import.meta.url, 'patterns')
