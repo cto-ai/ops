@@ -6,6 +6,10 @@ export function general (info) {
   process.exit(1)
 }
 
+export function silent ({ exitCode = 0 }) {
+  process.exit(exitCode)
+}
+
 export function api (info) {
   console.log('api failure', info, info.err && info.err.request)
   process.exit(1)
@@ -18,6 +22,7 @@ export function print ({ message }) {
 
 export default {
   general: new Fail(),
+  silent: new Fail({silent}),
   api: new Fail({ type: 'api' }),
   print: new Fail({ type: 'print' })
 }
