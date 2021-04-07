@@ -22,7 +22,7 @@ export function print ({ message }) {
 
 export default {
   general: new Fail(),
-  silent: new Fail({silent}),
+  silent: new Fail({ silent }),
   api: new Fail({ type: 'api' }),
   print: new Fail({ type: 'print' })
 }
