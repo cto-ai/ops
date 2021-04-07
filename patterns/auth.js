@@ -3,19 +3,14 @@ import { Fail } from 'clif'
 import { read, update, clear } from './config.js'
 
 const MSG_LOGIN_REQUIRED = `
-
 ✋ Sorry you need to be logged in to do that.
-
 🎳 You can sign up with {tuxCallOut ops account:signup}
 
 ❔ Please reach out to us with questions anytime!
-
 ⌚️ We are typically available {tuxEmphatic Monday-Friday 9am-5pm PT}
-
 📬 You can always reach us by {tuxUrl email mailto:support@cto.ai} {dim support@cto.ai}
 
 🖖 We'll get back to you as soon as we possibly can.
-
 `
 
 const MSG_SESSION_EXPIRED = `
@@ -36,7 +31,8 @@ export async function auth (info, settings) {
   const config = await read()
   const { tokens, user, team } = config
   const validity = check(tokens)
-  const signedIn = user && team && validity
+  const signedIn = !!(user && team && validity)
+
   if (signedIn === false) {
     throw new Fail({ type: 'print' }, MSG_LOGIN_REQUIRED)
   }

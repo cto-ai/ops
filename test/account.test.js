@@ -762,7 +762,9 @@ test('ops account signup (failure: empty teams array from teams api)', async ({ 
 })
 
 test('ops account support', async ({ is, matchSnapshot }) => {
-  const mocks = { ...common.mocks() }
+  const mocks = {
+    ...common.mocks()
+  }
   const cli = await harness('ops account support', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }

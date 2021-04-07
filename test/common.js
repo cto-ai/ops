@@ -7,7 +7,7 @@ export const mocks = (opsCtrlAccount = {}, opsLocalConfig = {}) => ({
     default () {
       return {
         read () {
-          return { tokens: {}, user: { username: 'test' } }
+          return { tokens: {}, user: { username: 'test' }, team: 'test-team' }
         },
         write () { },
         clear () { },
