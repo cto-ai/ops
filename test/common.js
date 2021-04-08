@@ -1,5 +1,6 @@
 import * as account from '@cto.ai/ops-ctrl-account'
 import * as config from '@cto.ai/ops-local-config'
+import * as tux from '@cto.ai/tux'
 
 export const mocks = (opsCtrlAccount = {}, opsLocalConfig = {}) => ({
   '@cto.ai/ops-local-config': {
@@ -31,6 +32,14 @@ export const mocks = (opsCtrlAccount = {}, opsLocalConfig = {}) => ({
       }
     },
     validate () { return true }
+  },
+  '@cto.ai/tux': {
+    ...tux,
+    spinner: {
+      ...tux.spinner,
+      start () {},
+      stop () {}
+    }
   }
 })
 

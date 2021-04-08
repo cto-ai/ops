@@ -406,6 +406,7 @@ test('ops account signin (failure: auth api error)', async ({ is, matchSnapshot 
       }
     }
   }
+
   const cli = await harness('ops account signin -u "TEST" -p "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }

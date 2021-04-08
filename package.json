@@ -19,6 +19,11 @@
   ],
   "author": "David Mark Clements <dave@cto.ai>",
   "license": "MIT",
+  "standard": {
+    "ignore": [
+      "tap-snapshots"
+    ]
+  },
   "dependencies": {
     "@cto.ai/ops-cmd": "~0.0.1",
     "@cto.ai/ops-ctrl-account": "^1.0.1",

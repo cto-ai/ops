@@ -1,21 +1,38 @@
 import { Fail } from 'clif'
+import { render } from '@cto.ai/tux'
+import createDebug from 'debug'
 import { log } from './print.js'
 
-export function general (info) {
-  console.log('general failure', info)
+const debug = createDebug('ops')
+
+export function general ({ message, ...info }) {
+  debug('general failure', info)
+  if (!message && info.err) {
+    if (Array.isArray(info.err.errors)) {
+      for (const { message } of info.err.errors) {
+        console.log(render(`{tuxError ›} Error: ${message}`))
+      }
+    } else {
+      console.log(render(`{tuxError ›} Error: ${info.err.message}`))
+    }
+    process.exit(1)
+  }
+  console.log(render(`{tuxError ›} Error: ${message}`))
   process.exit(1)
 }
 
-export function silent ({ exitCode = 0 }) {
+export function silent ({ exitCode = 0, ...info }) {
+  debug('silent failure', info)
   process.exit(exitCode)
 }
 
-export function api (info) {
-  console.log('api failure', info, info.err && info.err.request)
+export function api ({ err, ...info }) {
+  debug('api failure', info, err && err.request)
   process.exit(1)
 }
 
-export function print ({ message }) {
+export function print ({ message, ...info }) {
+  debug('print failure message', info)
   log({ message })
   process.exit(1)
 }
