@@ -39,7 +39,7 @@ export function print ({ message, ...info }) {
 
 export default {
   general: new Fail(),
-  silent: new Fail({ silent }),
+  silent: new Fail({ type: 'silent' }),
   api: new Fail({ type: 'api' }),
   print: new Fail({ type: 'print' })
 }
