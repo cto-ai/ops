@@ -3,6 +3,7 @@ import { PassThrough } from 'stream'
 import { basename } from 'path'
 import { rigging } from 'clif-dev'
 import { test, mockalicious } from 'tapx'
+import AggregateError from 'es-aggregate-error'
 import * as forge from '@cto.ai/ops-ctrl-forge'
 import * as common from './common.js'
 const load = mockalicious(import.meta.url)
@@ -170,7 +171,7 @@ test('ops build --nocache --ops "TEST1" "TEST2" (success)', async ({ is, matchSn
 test('ops build --ops "TEST" (failure: ERR_NAME_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
-      throw Object.assign(Error('ERR_NAME_INVALID'), { code: 'ERR_NAME_INVALID' })
+      throw new AggregateError([Object.assign(Error('ERR_NAME_INVALID'), { code: 'ERR_NAME_INVALID' })])
     }
   })
   const cli = await harness('ops build --ops "TEST"', mocks)
@@ -184,7 +185,7 @@ test('ops build --ops "TEST" (failure: ERR_NAME_INVALID)', async ({ is, matchSna
 test('ops build --ops "TEST" (failure: ERR_DESC_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
-      throw Object.assign(Error('ERR_DESC_INVALID'), { code: 'ERR_DESC_INVALID' })
+      throw new AggregateError([Object.assign(Error('ERR_DESC_INVALID'), { code: 'ERR_DESC_INVALID' })])
     }
   })
   const cli = await harness('ops build --ops "TEST"', mocks)
@@ -198,7 +199,7 @@ test('ops build --ops "TEST" (failure: ERR_DESC_INVALID)', async ({ is, matchSna
 test('ops build --ops "TEST" (failure: ERR_VERSION_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
-      throw Object.assign(Error('ERR_VERSION_INVALID'), { code: 'ERR_VERSION_INVALID' })
+      throw new AggregateError([Object.assign(Error('ERR_VERSION_INVALID'), { code: 'ERR_VERSION_INVALID' })])
     }
   })
   const cli = await harness('ops build --ops "TEST"', mocks)
@@ -212,7 +213,7 @@ test('ops build --ops "TEST" (failure: ERR_VERSION_INVALID)', async ({ is, match
 test('ops build --ops "TEST" (failure: ERR_NO_PUBLIC)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
-      throw Object.assign(Error('ERR_NO_PUBLIC'), { code: 'ERR_NO_PUBLIC' })
+      throw new AggregateError([Object.assign(Error('ERR_NO_PUBLIC'), { code: 'ERR_NO_PUBLIC' })])
     }
   })
   const cli = await harness('ops build --ops "TEST"', mocks)
@@ -226,7 +227,7 @@ test('ops build --ops "TEST" (failure: ERR_NO_PUBLIC)', async ({ is, matchSnapsh
 test('ops build --ops "TEST" (failure: ERR_NO_RUN)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
-      throw Object.assign(Error('ERR_NO_RUN'), { code: 'ERR_NO_RUN' })
+      throw new AggregateError([Object.assign(Error('ERR_NO_RUN'), { code: 'ERR_NO_RUN' })])
     }
   })
   const cli = await harness('ops build --ops "TEST"', mocks)
@@ -240,7 +241,7 @@ test('ops build --ops "TEST" (failure: ERR_NO_RUN)', async ({ is, matchSnapshot 
 test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOBS_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
-      throw Object.assign(Error('ERR_PIPELINE_JOBS_INVALID'), { code: 'ERR_PIPELINE_JOBS_INVALID' })
+      throw new AggregateError([Object.assign(Error('ERR_PIPELINE_JOBS_INVALID'), { code: 'ERR_PIPELINE_JOBS_INVALID' })])
     }
   })
   const cli = await harness('ops build --ops "TEST"', mocks)
@@ -254,7 +255,7 @@ test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOBS_INVALID)', async ({ is,
 test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOB_NAME_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
-      throw Object.assign(Error('ERR_PIPELINE_JOB_NAME_INVALID'), { code: 'ERR_PIPELINE_JOB_NAME_INVALID' })
+      throw new AggregateError([Object.assign(Error('ERR_PIPELINE_JOB_NAME_INVALID'), { code: 'ERR_PIPELINE_JOB_NAME_INVALID' })])
     }
   })
   const cli = await harness('ops build --ops "TEST"', mocks)
@@ -268,7 +269,7 @@ test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOB_NAME_INVALID)', async ({
 test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOB_DESC_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
-      throw Object.assign(Error('ERR_PIPELINE_JOB_DESC_INVALID'), { code: 'ERR_PIPELINE_JOB_DESC_INVALID' })
+      throw new AggregateError([Object.assign(Error('ERR_PIPELINE_JOB_DESC_INVALID'), { code: 'ERR_PIPELINE_JOB_DESC_INVALID' })])
     }
   })
   const cli = await harness('ops build --ops "TEST"', mocks)
@@ -282,7 +283,7 @@ test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOB_DESC_INVALID)', async ({
 test('ops build --ops "TEST" (failure: ERR_ENV_VAR_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
-      throw Object.assign(Error('ERR_ENV_VAR_INVALID'), { code: 'ERR_ENV_VAR_INVALID' })
+      throw new AggregateError([Object.assign(Error('ERR_ENV_VAR_INVALID'), { code: 'ERR_ENV_VAR_INVALID' })])
     }
   })
   const cli = await harness('ops build --ops "TEST"', mocks)
@@ -296,7 +297,7 @@ test('ops build --ops "TEST" (failure: ERR_ENV_VAR_INVALID)', async ({ is, match
 test('ops build --ops "TEST" (failure: ERR_SERVICE_DOMAIN_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
-      throw Object.assign(Error('ERR_SERVICE_DOMAIN_INVALID'), { code: 'ERR_SERVICE_DOMAIN_INVALID' })
+      throw new AggregateError([Object.assign(Error('ERR_SERVICE_DOMAIN_INVALID'), { code: 'ERR_SERVICE_DOMAIN_INVALID' })])
     }
   })
   const cli = await harness('ops build --ops "TEST"', mocks)
