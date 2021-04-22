@@ -83,7 +83,7 @@ const buildMocks = (opts = {}) => {
   return mocks
 }
 
-test('ops build (--ops is required)', async ({ is, matchSnapshot }) => {
+test('ops build (--op is required)', async ({ is, matchSnapshot }) => {
   const mocks = { ...common.mocks() }
   const cli = await harness('ops build', mocks)
   const interactions = []
@@ -93,9 +93,9 @@ test('ops build (--ops is required)', async ({ is, matchSnapshot }) => {
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (cwd, success)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (cwd, success)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks()
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -103,9 +103,9 @@ test('ops build --ops "TEST" (cwd, success)', async ({ is, matchSnapshot }) => {
   matchSnapshot(output)
 })
 
-test('ops build ./ops-dir --ops "TEST" (success)', async ({ is, matchSnapshot }) => {
+test('ops build ./ops-dir --op "TEST" (success)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks()
-  const cli = await harness('ops build ./ops-dir --ops "TEST"', mocks)
+  const cli = await harness('ops build ./ops-dir --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -113,9 +113,9 @@ test('ops build ./ops-dir --ops "TEST" (success)', async ({ is, matchSnapshot })
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (success with warnings)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (success with warnings)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks()
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -123,9 +123,9 @@ test('ops build --ops "TEST" (success with warnings)', async ({ is, matchSnapsho
   matchSnapshot(output)
 })
 
-test('ops build --nocache --ops "TEST" (success)', async ({ is, matchSnapshot }) => {
+test('ops build --nocache --op "TEST" (success)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks()
-  const cli = await harness('ops build --nocache --ops "TEST"', mocks)
+  const cli = await harness('ops build --nocache --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -133,7 +133,7 @@ test('ops build --nocache --ops "TEST" (success)', async ({ is, matchSnapshot })
   matchSnapshot(output)
 })
 
-test('ops build --nocache --ops "TEST1" "TEST2" (success)', async ({ is, matchSnapshot }) => {
+test('ops build --nocache --op "TEST1" --op "TEST2" (success)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     manifest: `
       version: "1"
@@ -160,7 +160,7 @@ test('ops build --nocache --ops "TEST1" "TEST2" (success)', async ({ is, matchSn
           mountHome: false
   `
   })
-  const cli = await harness('ops build --nocache --ops "TEST1" "TEST2"', mocks)
+  const cli = await harness('ops build --nocache --op "TEST1" --op "TEST2"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -168,13 +168,13 @@ test('ops build --nocache --ops "TEST1" "TEST2" (success)', async ({ is, matchSn
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: ERR_NAME_INVALID)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: ERR_NAME_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
       throw new AggregateError([Object.assign(Error('ERR_NAME_INVALID'), { code: 'ERR_NAME_INVALID' })])
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -182,13 +182,13 @@ test('ops build --ops "TEST" (failure: ERR_NAME_INVALID)', async ({ is, matchSna
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: ERR_DESC_INVALID)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: ERR_DESC_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
       throw new AggregateError([Object.assign(Error('ERR_DESC_INVALID'), { code: 'ERR_DESC_INVALID' })])
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -196,13 +196,13 @@ test('ops build --ops "TEST" (failure: ERR_DESC_INVALID)', async ({ is, matchSna
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: ERR_VERSION_INVALID)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: ERR_VERSION_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
       throw new AggregateError([Object.assign(Error('ERR_VERSION_INVALID'), { code: 'ERR_VERSION_INVALID' })])
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -210,13 +210,13 @@ test('ops build --ops "TEST" (failure: ERR_VERSION_INVALID)', async ({ is, match
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: ERR_NO_PUBLIC)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: ERR_NO_PUBLIC)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
       throw new AggregateError([Object.assign(Error('ERR_NO_PUBLIC'), { code: 'ERR_NO_PUBLIC' })])
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -224,13 +224,13 @@ test('ops build --ops "TEST" (failure: ERR_NO_PUBLIC)', async ({ is, matchSnapsh
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: ERR_NO_RUN)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: ERR_NO_RUN)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
       throw new AggregateError([Object.assign(Error('ERR_NO_RUN'), { code: 'ERR_NO_RUN' })])
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -238,13 +238,13 @@ test('ops build --ops "TEST" (failure: ERR_NO_RUN)', async ({ is, matchSnapshot 
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOBS_INVALID)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: ERR_PIPELINE_JOBS_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
       throw new AggregateError([Object.assign(Error('ERR_PIPELINE_JOBS_INVALID'), { code: 'ERR_PIPELINE_JOBS_INVALID' })])
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -252,13 +252,13 @@ test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOBS_INVALID)', async ({ is,
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOB_NAME_INVALID)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: ERR_PIPELINE_JOB_NAME_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
       throw new AggregateError([Object.assign(Error('ERR_PIPELINE_JOB_NAME_INVALID'), { code: 'ERR_PIPELINE_JOB_NAME_INVALID' })])
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -266,13 +266,13 @@ test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOB_NAME_INVALID)', async ({
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOB_DESC_INVALID)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: ERR_PIPELINE_JOB_DESC_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
       throw new AggregateError([Object.assign(Error('ERR_PIPELINE_JOB_DESC_INVALID'), { code: 'ERR_PIPELINE_JOB_DESC_INVALID' })])
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -280,13 +280,13 @@ test('ops build --ops "TEST" (failure: ERR_PIPELINE_JOB_DESC_INVALID)', async ({
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: ERR_ENV_VAR_INVALID)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: ERR_ENV_VAR_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
       throw new AggregateError([Object.assign(Error('ERR_ENV_VAR_INVALID'), { code: 'ERR_ENV_VAR_INVALID' })])
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -294,13 +294,13 @@ test('ops build --ops "TEST" (failure: ERR_ENV_VAR_INVALID)', async ({ is, match
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: ERR_SERVICE_DOMAIN_INVALID)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: ERR_SERVICE_DOMAIN_INVALID)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
       throw new AggregateError([Object.assign(Error('ERR_SERVICE_DOMAIN_INVALID'), { code: 'ERR_SERVICE_DOMAIN_INVALID' })])
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -308,13 +308,13 @@ test('ops build --ops "TEST" (failure: ERR_SERVICE_DOMAIN_INVALID)', async ({ is
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: WRN_DOCKER_NOT_FOUND)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: WRN_DOCKER_NOT_FOUND)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async stat () {
       throw Error()
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = ['n']
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -322,13 +322,13 @@ test('ops build --ops "TEST" (failure: WRN_DOCKER_NOT_FOUND)', async ({ is, matc
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: WRN_DOCKER_NOT_RUNNING)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: WRN_DOCKER_NOT_RUNNING)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async ping () {
       throw Error()
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = ['n']
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -336,13 +336,13 @@ test('ops build --ops "TEST" (failure: WRN_DOCKER_NOT_RUNNING)', async ({ is, ma
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: WRN_DOCKER_NOT_RUNNING, 1 retry)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: WRN_DOCKER_NOT_RUNNING, 1 retry)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async ping () {
       throw Error()
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = ['y', 'n']
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -350,13 +350,13 @@ test('ops build --ops "TEST" (failure: WRN_DOCKER_NOT_RUNNING, 1 retry)', async 
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: WRN_DOCKER_NOT_RUNNING, 4 retries)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: WRN_DOCKER_NOT_RUNNING, 4 retries)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async ping () {
       throw Error()
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = ['y', 'y', 'y', 'y', 'n']
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)
@@ -364,13 +364,13 @@ test('ops build --ops "TEST" (failure: WRN_DOCKER_NOT_RUNNING, 4 retries)', asyn
   matchSnapshot(output)
 })
 
-test('ops build --ops "TEST" (failure: unknown error)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (failure: unknown error)', async ({ is, matchSnapshot }) => {
   const mocks = buildMocks({
     async * build (opts) {
       throw Error('test')
     }
   })
-  const cli = await harness('ops build --ops "TEST"', mocks)
+  const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
   const opts = { settings: { ...common.settings } }
   const { exitCode, output } = await cli(interactions, opts)

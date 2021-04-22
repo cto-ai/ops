@@ -1,6 +1,7 @@
 import createAccount, { validate } from '@cto.ai/ops-ctrl-account'
 import { Fail } from 'clif'
 import { read, update, clear } from './config.js'
+import { start, stop } from './spinner.js'
 
 const MSG_LOGIN_REQUIRED = `
 ✋ Sorry you need to be logged in to do that.
@@ -28,28 +29,33 @@ function check (tokens) {
 }
 
 export async function auth (info, settings) {
-  const config = await read()
-  const { tokens, user, team } = config
-  const validity = check(tokens)
-  const signedIn = !!(user && team && validity)
-
-  if (signedIn === false) {
-    throw new Fail({ type: 'print' }, MSG_LOGIN_REQUIRED)
-  }
-  if (validity === 'expired') {
-    await clear()
-    throw new Fail({ type: 'print' }, MSG_SESSION_EXPIRED)
-  }
-
-  const account = createAccount(settings.auth)
-
   try {
-    return await update({ tokens: await account.refresh(tokens) })
-  } catch (err) {
-    if (err.code === 'ERR_UNAUTHORIZED') {
+    start(info)
+    const config = await read()
+    const { tokens, user, team } = config
+    const validity = check(tokens)
+    const signedIn = !!(user && team && validity)
+
+    if (signedIn === false) {
       throw new Fail({ type: 'print' }, MSG_LOGIN_REQUIRED)
     }
-    throw new Fail({ err, type: 'api' }, 'Auth attempt failed')
+    if (validity === 'expired') {
+      await clear()
+      throw new Fail({ type: 'print' }, MSG_SESSION_EXPIRED)
+    }
+
+    const account = createAccount(settings.auth)
+
+    try {
+      return await update({ tokens: await account.refresh(tokens) })
+    } catch (err) {
+      if (err.code === 'ERR_UNAUTHORIZED') {
+        throw new Fail({ type: 'print' }, MSG_LOGIN_REQUIRED)
+      }
+      throw new Fail({ err, type: 'api' }, 'Auth attempt failed')
+    }
+  } finally {
+    stop(info)
   }
 }
 
