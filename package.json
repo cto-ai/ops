@@ -1,6 +1,6 @@
 {
   "name": "@cto.ai/ops",
-  "version": "2.0.0-rc.5",
+  "version": "2.0.0-rc.6",
   "description": "cto.ai OPS CLI",
   "main": "index.js",
   "type": "module",
