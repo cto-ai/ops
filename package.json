@@ -8,7 +8,7 @@
     "ops": "cmd.js"
   },
   "scripts": {
-    "test": "tap -T --100 test/*.test.js",
+    "test": "tap -T test/*.test.js",
     "cov": "cov",
     "lint": "standard",
     "check": "npm test && npm run lint"
@@ -25,13 +25,13 @@
     ]
   },
   "dependencies": {
-    "@cto.ai/ops-cmd": "~0.0.1",
+    "@cto.ai/ops-cmd": "~0.0.10",
     "@cto.ai/ops-ctrl-account": "^1.0.1",
     "@cto.ai/ops-fallthrough": "0.0.0",
     "@cto.ai/ops-local-config": "^1.1.0",
     "@cto.ai/tux": "~0.0.1",
     "analytics-node": "^4.0.1",
-    "clif": "^1.0.0-rc.5",
+    "clif": "^1.0.0-rc.11",
     "debug": "^4.3.1",
     "desm": "^1.1.0",
     "enquirer": "^2.3.6",
