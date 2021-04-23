@@ -10,15 +10,15 @@ exports[`test/build.test.js TAP ops build (--op is required) > must match snapsh
 `
 
 exports[`test/build.test.js TAP ops build --nocache --op "TEST" (success) > must match snapshot 1`] = `
-"🛠  Building: \\u001b[38;2;13;224;207mTEST:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /Users/davidclements/code/cto.ai/ops\\u001b[22m\\u001b[23m to test your op.\\n\\n"
+"🛠  Building: \\u001b[38;2;13;224;207mTEST:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /--dummy--/ops\\u001b[22m\\u001b[23m to test your op.\\n\\n"
 `
 
 exports[`test/build.test.js TAP ops build --nocache --op "TEST1" --op "TEST2" (success) > must match snapshot 1`] = `
-"🛠  Building: \\u001b[38;2;13;224;207mTEST1:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST1\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /Users/davidclements/code/cto.ai/ops\\u001b[22m\\u001b[23m to test your op.\\n\\n🛠  Building: \\u001b[38;2;13;224;207mTEST2:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST2\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /Users/davidclements/code/cto.ai/ops\\u001b[22m\\u001b[23m to test your op.\\n\\n"
+"🛠  Building: \\u001b[38;2;13;224;207mTEST1:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST1\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /--dummy--/ops\\u001b[22m\\u001b[23m to test your op.\\n\\n🛠  Building: \\u001b[38;2;13;224;207mTEST2:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST2\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /--dummy--/ops\\u001b[22m\\u001b[23m to test your op.\\n\\n"
 `
 
 exports[`test/build.test.js TAP ops build --op "TEST" (cwd, success) > must match snapshot 1`] = `
-"🛠  Building: \\u001b[38;2;13;224;207mTEST:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /Users/davidclements/code/cto.ai/ops\\u001b[22m\\u001b[23m to test your op.\\n\\n"
+"🛠  Building: \\u001b[38;2;13;224;207mTEST:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /--dummy--/ops\\u001b[22m\\u001b[23m to test your op.\\n\\n"
 `
 
 exports[`test/build.test.js TAP ops build --op "TEST" (failure: ERR_DESC_INVALID) > must match snapshot 1`] = `
@@ -82,9 +82,9 @@ exports[`test/build.test.js TAP ops build --op "TEST" (failure: unknown error) >
 `
 
 exports[`test/build.test.js TAP ops build --op "TEST" (success with warnings) > must match snapshot 1`] = `
-"🛠  Building: \\u001b[38;2;13;224;207mTEST:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /Users/davidclements/code/cto.ai/ops\\u001b[22m\\u001b[23m to test your op.\\n\\n"
+"🛠  Building: \\u001b[38;2;13;224;207mTEST:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /--dummy--/ops\\u001b[22m\\u001b[23m to test your op.\\n\\n"
 `
 
 exports[`test/build.test.js TAP ops build ./ops-dir --op "TEST" (success) > must match snapshot 1`] = `
-"🛠  Building: \\u001b[38;2;13;224;207mTEST:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /Users/davidclements/code/cto.ai/ops\\u001b[22m\\u001b[23m to test your op.\\n\\n"
+"🛠  Building: \\u001b[38;2;13;224;207mTEST:0.1.0\\u001b[39m\\nstream output\\n💻 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops run TEST\\u001b[22m\\u001b[23m to test your op.\\n📦 Run \\u001b[38;2;76;246;121m$\\u001b[39m \\u001b[3m\\u001b[2mops public /--dummy--/ops/ops-dir\\u001b[22m\\u001b[23m to test your op.\\n\\n"
 `

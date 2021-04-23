@@ -93,7 +93,17 @@ test('ops build (--op is required)', async ({ is, matchSnapshot }) => {
   matchSnapshot(output)
 })
 
-test('ops build --op "TEST" (cwd, success)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (cwd, success)', async ({ is, matchSnapshot, teardown }) => {
+  teardown(() => {
+    process.cwd = cwd
+  })
+  const { cwd } = process
+  process.cwd = () => {
+    if (/commands\/build/.test(Error().stack)) {
+      return '/--dummy--/ops'
+    }
+    return cwd()
+  }
   const mocks = buildMocks()
   const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
@@ -103,7 +113,17 @@ test('ops build --op "TEST" (cwd, success)', async ({ is, matchSnapshot }) => {
   matchSnapshot(output)
 })
 
-test('ops build ./ops-dir --op "TEST" (success)', async ({ is, matchSnapshot }) => {
+test('ops build ./ops-dir --op "TEST" (success)', async ({ is, matchSnapshot, teardown }) => {
+  teardown(() => {
+    process.cwd = cwd
+  })
+  const { cwd } = process
+  process.cwd = () => {
+    if (/commands\/build/.test(Error().stack)) {
+      return '/--dummy--/ops'
+    }
+    return cwd()
+  }
   const mocks = buildMocks()
   const cli = await harness('ops build ./ops-dir --op "TEST"', mocks)
   const interactions = []
@@ -113,7 +133,17 @@ test('ops build ./ops-dir --op "TEST" (success)', async ({ is, matchSnapshot }) 
   matchSnapshot(output)
 })
 
-test('ops build --op "TEST" (success with warnings)', async ({ is, matchSnapshot }) => {
+test('ops build --op "TEST" (success with warnings)', async ({ is, matchSnapshot, teardown }) => {
+  teardown(() => {
+    process.cwd = cwd
+  })
+  const { cwd } = process
+  process.cwd = () => {
+    if (/commands\/build/.test(Error().stack)) {
+      return '/--dummy--/ops'
+    }
+    return cwd()
+  }
   const mocks = buildMocks()
   const cli = await harness('ops build --op "TEST"', mocks)
   const interactions = []
@@ -123,7 +153,17 @@ test('ops build --op "TEST" (success with warnings)', async ({ is, matchSnapshot
   matchSnapshot(output)
 })
 
-test('ops build --nocache --op "TEST" (success)', async ({ is, matchSnapshot }) => {
+test('ops build --nocache --op "TEST" (success)', async ({ is, matchSnapshot, teardown }) => {
+  teardown(() => {
+    process.cwd = cwd
+  })
+  const { cwd } = process
+  process.cwd = () => {
+    if (/commands\/build/.test(Error().stack)) {
+      return '/--dummy--/ops'
+    }
+    return cwd()
+  }
   const mocks = buildMocks()
   const cli = await harness('ops build --nocache --op "TEST"', mocks)
   const interactions = []
@@ -133,7 +173,17 @@ test('ops build --nocache --op "TEST" (success)', async ({ is, matchSnapshot }) 
   matchSnapshot(output)
 })
 
-test('ops build --nocache --op "TEST1" --op "TEST2" (success)', async ({ is, matchSnapshot }) => {
+test('ops build --nocache --op "TEST1" --op "TEST2" (success)', async ({ is, matchSnapshot, teardown }) => {
+  teardown(() => {
+    process.cwd = cwd
+  })
+  const { cwd } = process
+  process.cwd = () => {
+    if (/commands\/build/.test(Error().stack)) {
+      return '/--dummy--/ops'
+    }
+    return cwd()
+  }
   const mocks = buildMocks({
     manifest: `
       version: "1"
