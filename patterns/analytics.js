@@ -18,13 +18,20 @@ export function track ({ event, ...properties }, { api, analytics }) {
 
   async function fireAndForget () {
     try {
+      const cfg = await config.read()
       const {
-        user: { email },
+        user: { email, username },
         team: { name: activeTeam },
         version,
         tokens: { accessToken }
-      } = await config.read()
+      } = cfg
 
+      for (const [k, v] of properties) {
+        if (typeof v === 'function') properties[k] = v(cfg)
+      }
+
+      properties.username = username
+      properties.runtime = 'CLI'
       properties.team = activeTeam
       properties.email = email
       if (version) properties.version = version
