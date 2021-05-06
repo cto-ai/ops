@@ -3,6 +3,9 @@ on: push
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      FORCE_COLOR: 3
+      FORCE_HYPERLINK: 1
     strategy:
       matrix:
         os:
