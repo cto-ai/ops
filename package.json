@@ -25,7 +25,7 @@
     ]
   },
   "dependencies": {
-    "@cto.ai/ops-cmd": "^0.0.12",
+    "@cto.ai/ops-cmd": "^0.0.14",
     "@cto.ai/ops-ctrl-account": "^1.0.1",
     "@cto.ai/ops-fallthrough": "0.0.0",
     "@cto.ai/ops-local-config": "^1.1.0",
