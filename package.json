@@ -8,7 +8,7 @@
     "ops": "cmd.js"
   },
   "scripts": {
-    "test": "tap -T test/*.test.js",
+    "test": "tap --color test/init.test.js",
     "cov": "cov",
     "lint": "standard",
     "check": "npm test && npm run lint"
@@ -39,7 +39,7 @@
     "ora": "^5.3.0"
   },
   "devDependencies": {
-    "clif-dev": "^1.0.1",
+    "clif-dev": "^1.0.9",
     "es-aggregate-error": "^1.0.5",
     "pre-commit": "^1.2.2",
     "standard": "^16.0.3",

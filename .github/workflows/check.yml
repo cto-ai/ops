@@ -6,6 +6,8 @@ jobs:
     env:
       FORCE_COLOR: 3
       FORCE_HYPERLINK: 1
+      TERM: xterm-color
+      COLORTERM: truecolor
     strategy:
       matrix:
         os:
