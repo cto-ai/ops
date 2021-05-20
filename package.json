@@ -8,7 +8,7 @@
     "ops": "cmd.js"
   },
   "scripts": {
-    "test": "tap --color test/init.test.js",
+    "test": "tap --color test/*.test.js",
     "cov": "cov",
     "lint": "standard",
     "check": "npm test && npm run lint"
